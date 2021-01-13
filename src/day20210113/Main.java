@@ -1,6 +1,7 @@
 package day20210113;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 // leetcode
 public class Main {
@@ -54,6 +55,7 @@ public class Main {
     /* 10의 자리 수를 받아오는 다른 풀이 , integer 값 넘는 경우 체크하는 부분 확인!
     (2^21-1) = 2147483647가 max 인데 214748364이면 끝에가 8부터는 overflow!
     -2^31 = -2147483648가 min 인데 214748364이면 끝자리가 -9부터는 overflow!
+
         public int reverse(int x) {
             int rev = 0;
             while (x != 0) {
@@ -114,13 +116,52 @@ public ListNode deleteDuplicates(ListNode head) {
     public static boolean isPalindrome(int x) {
         String original = String.valueOf(x);
         StringBuilder reversed = new StringBuilder();
-        for(int i = original.length()-1; i > -1 ; i--){
+        for (int i = original.length() - 1; i > -1; i--) {
             reversed.append(original.charAt(i));
         }
         return original.equals(reversed.toString());
     }
 
+    public static String longestCommonPrefix(String[] strs) {
+        if (strs.length == 0) {
+            return "";
+        }
+        Arrays.sort(strs, Comparator.comparingInt(String::length));
+        String prefix = "";
+        while (strs[0].length() > -1) {
+            prefix = strs[0];
+            int count = strs.length;
+            for (String word : strs) {
+                if (word.startsWith(prefix)) {
+                    count--;
+                }
+            }
+            if (count == 0) {
+                break;
+            } else {
+                strs[0] = strs[0].substring(0, strs[0].length() - 1);
+            }
+        }
+        return prefix;
+    }
+    /*
+    왜 오래걸려..ㅠㅠ
+
+    다른 풀이
+
+     public String longestCommonPrefix(String[] strs) {
+    if (strs.length == 0) return "";
+    String prefix = strs[0];
+    for (int i = 1; i < strs.length; i++)
+        while (strs[i].indexOf(prefix) != 0) {
+            prefix = prefix.substring(0, prefix.length() - 1);
+            if (prefix.isEmpty()) return "";
+        }
+    return prefix;
+}
+     */
+
     public static void main(String[] args) {
-        System.out.println(isPalindrome(101));
+        System.out.println(longestCommonPrefix(new String[]{"dog","racecar","car"}));
     }
 }
