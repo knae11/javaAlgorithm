@@ -111,7 +111,16 @@ public ListNode deleteDuplicates(ListNode head) {
 }
      */
 
+    public static boolean isPalindrome(int x) {
+        String original = String.valueOf(x);
+        StringBuilder reversed = new StringBuilder();
+        for(int i = original.length()-1; i > -1 ; i--){
+            reversed.append(original.charAt(i));
+        }
+        return original.equals(reversed.toString());
+    }
+
     public static void main(String[] args) {
-        System.out.println(deleteDuplicates(new ListNode()));
+        System.out.println(isPalindrome(101));
     }
 }
