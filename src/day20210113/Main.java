@@ -2,6 +2,8 @@ package day20210113;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 // leetcode
 public class Main {
@@ -160,6 +162,33 @@ public ListNode deleteDuplicates(ListNode head) {
     return prefix;
 }
      */
+
+    /**
+     * Definition for singly-linked list.
+     * class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode(int x) {
+     *         val = x;
+     *         next = null;
+     *     }
+     * }
+     */
+    // https://leetcode.com/problems/linked-list-cycle/ 에서 실행됨
+    public boolean hasCycle(ListNode head) {
+        Set<ListNode> nodes = new HashSet<>();
+        if(head == null || head.next == null){
+            return false;
+        }
+        while( head.next != null){
+            if( nodes.contains(head)){
+                return true;
+            }
+            nodes.add(head);
+            head = head.next;
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         System.out.println(longestCommonPrefix(new String[]{"dog","racecar","car"}));
