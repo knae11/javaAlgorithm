@@ -30,12 +30,40 @@ public class Solution {
         return answer;
     }
 
+    public List<Integer> solution42840(int[] answers) {
+        List<Integer> answer = new ArrayList<>();
+        int[] supo1 = new int[]{1, 2, 3, 4, 5};
+        // 문제 제대로 읽자!!
+        int[] supo2 = new int[]{2, 1, 2, 3, 2, 4, 2, 5};
+        int[] supo3 = new int[]{3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        // 배열로 하면 시간이 더 늘어난다고 한다!
+        int[] correct = new int[]{0,0,0};
+        for (int i = 0; i < answers.length; i++) {
+            // index bound 확인하기!
+            if (supo1[i % supo1.length] == answers[i]) {
+                correct[0] += 1;
+            }
+            if (supo2[i % supo2.length] == answers[i]) {
+                correct[1] += 1;
+            }
+            if (supo3[i % supo3.length] == answers[i]) {
+                correct[2] += 1;
+            }
+        }
+        int max = Math.max(correct[0], Math.max(correct[1], correct[2]));
+        for (int i = 0; i < 3; i++) {
+            if (correct[i] == max) {
+                answer.add(i + 1);
+            }
+        }
+        return answer;
+    }
+
+
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[][] board = new int[][]{{0, 0, 0, 0, 0}, {0, 0, 1, 0, 3}, {0, 2, 5, 0, 1},
-            {4, 2, 4, 4, 2}, {3, 5, 1, 3, 1}};
-        int[] moves = new int[]{1, 5, 3, 5, 1, 2, 1, 4};
-        System.out.println(solution.solution(board, moves));
+        Solution programmers = new Solution();
+        int[] answer = new int[]{1, 2, 3, 4, 5};
+        System.out.println(programmers.solution42840(answer));
     }
 
 }
