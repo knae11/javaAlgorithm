@@ -60,23 +60,23 @@ public class Solution {
     }
 
     public String solution12930(String s) {
-        String answer = "";
+        StringBuilder answer = new StringBuilder();
         int index = 0;
         // 문제가 하라는 대로 하자!! 공백이 여러개일수도 있다.
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) != ' ') {
                 if (index % 2 == 0) {
-                    answer += String.valueOf(s.charAt(i)).toUpperCase();
+                    answer.append(String.valueOf(s.charAt(i)).toUpperCase());
                 } else {
-                    answer += String.valueOf(s.charAt(i)).toLowerCase();
+                    answer.append(String.valueOf(s.charAt(i)).toLowerCase());
                 }
                 index += 1;
             } else {
                 index = 0;
-                answer += " ";
+                answer.append(" ");
             }
         }
-        return answer;
+        return answer.toString();
     }
 
     /*다른사람 풀이
