@@ -3,7 +3,6 @@ package day20210120;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class Solution {
     public int solution(int[][] board, int[] moves) {
@@ -68,7 +67,7 @@ public class Solution {
             if (s.charAt(i) != ' ') {
                 if (index % 2 == 0) {
                     answer += String.valueOf(s.charAt(i)).toUpperCase();
-                } else{
+                } else {
                     answer += String.valueOf(s.charAt(i)).toLowerCase();
                 }
                 index += 1;
@@ -94,13 +93,29 @@ public class Solution {
 
         return String.valueOf(chars);
   }
-    * */
+    */
+    public int[] solution42748(int[] array, int[][] commands) {
+        List<Integer> answer = new ArrayList<>();
+        for (int[] command : commands) {
+            int i = command[0];
+            int j = command[1];
+            int k = command[2];
+            // copyOfRange 메소드 fromInclusive, endExclusive
+            int[] arrayCopy = Arrays.copyOfRange(array, i - 1, j);
+            // sort
+            Arrays.sort(arrayCopy);
+            answer.add(arrayCopy[k-1]);
+        }
+        // 리스트를 int[]로 변경하는 방법
+        return answer.stream().mapToInt(i -> i).toArray();
+    }
 
 
     public static void main(String[] args) {
         Solution programmers = new Solution();
-        String s = " Azaa";
-        System.out.println(programmers.solution12930(s));
+        int[] array = new int[]{1, 5, 2, 6, 3, 7, 4};
+        int[][] commands = new int[][]{{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
+        System.out.println(programmers.solution42748(array, commands));
     }
 
 }
