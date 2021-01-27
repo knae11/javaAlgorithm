@@ -23,4 +23,20 @@ class Result {
         return Math.abs(leftToRight - rightToLeft);
     }
 
+    //https://www.hackerrank.com/challenges/time-conversion/problem
+    public String timeConversion(String s) {
+        String AMOrPM = s.substring(s.length() - 2);
+        String[] parsed = s.split(":");
+        int hour = Integer.parseInt(parsed[0]);
+        if (AMOrPM.equals("PM")) {
+            if (hour < 12) {
+                return (hour + 12) + s.substring(2, s.length() - 2);
+            }
+        } else {
+            if (hour == 12) {
+                return "00" + s.substring(2, s.length() - 2);
+            }
+        }
+        return s.substring(0, s.length() - 2);
+    }
 }
