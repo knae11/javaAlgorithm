@@ -4,13 +4,6 @@ import java.util.List;
 
 class Result {
 
-    /*
-     * Complete the 'diagonalDifference' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts 2D_INTEGER_ARRAY arr as parameter.
-     */
-
     //https://www.hackerrank.com/challenges/diagonal-difference/problem
     public int diagonalDifference(List<List<Integer>> arr) {
         int leftToRight = 0;
@@ -51,5 +44,14 @@ class Result {
         return "NO";
     }
 
+    //https://www.hackerrank.com/challenges/save-the-prisoner/problem
+    public static int saveThePrisoner(int n, int m, int s) {
+        int index = m % n != 0 ? m % n - 1 : n - 1;
+        return (index + s) % n == 0 ? n : (index + s) % n;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(saveThePrisoner(2, 8, 2));
+    }
 
 }
