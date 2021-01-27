@@ -39,4 +39,17 @@ class Result {
         }
         return s.substring(0, s.length() - 2);
     }
+
+    //https://www.hackerrank.com/challenges/kangaroo/problem
+    public String kangaroo(int x1, int v1, int x2, int v2) {
+        if (v2 > v1 || v1 == v2) {
+            return "NO";
+        }
+        if ((x1 - x2) % (v2 - v1) == 0) {
+            return "YES";
+        }
+        return "NO";
+    }
+
+
 }
